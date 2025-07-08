@@ -10,7 +10,7 @@ public class Menu {
     String nomeArquivo;
 
 public static void ImprimeMenu() {
-    System.out.println("\n" + "\n");
+    System.out.println("\n");
     System.out.println("\tMenu Trabalho1");
     System.out.println("\tEscolha as opções seguintes");
     System.out.println("\t1. Compactar Arquivo (Caracter)");
@@ -41,6 +41,7 @@ public static void main(String[] args) {
 
         switch (opcao) {
             case 0:
+                System.out.println("Saindo...");
                 System.exit(0);
                 break;
         
@@ -77,6 +78,7 @@ public static void main(String[] args) {
                 break;
 
             default:
+            System.out.print("\nOpção Invalida! Escolha Outro!");
                 break;
 
 
