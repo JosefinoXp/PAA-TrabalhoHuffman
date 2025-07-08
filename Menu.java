@@ -53,10 +53,16 @@ public static void main(String[] args) {
                 try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto)) ) {
                     FileWriter escritor = new FileWriter(nomeFinal);
 
-                    String texto;
+                    StringBuilder texto = new StringBuilder();
 
-                    while((texto = leitor.readLine()) != null)
-                        escritor.write(texto);
+                    String texto1;
+
+                    while((texto1 = leitor.readLine()) != null)
+                        texto.append(texto1);
+
+                    Huffman codificador = new Huffman(texto.toString());
+
+                    escritor.write(codificador.codificar());
 
                     escritor.close();
                 } catch (Exception e) {
