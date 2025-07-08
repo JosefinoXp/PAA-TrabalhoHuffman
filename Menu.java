@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -44,18 +47,17 @@ public static void main(String[] args) {
             case 1:
                 entrada.nextLine();
                 String nomeTexto = DigiteNomeArquivo();
+                String nomeFinal = DigiteNomeArquivo();
 
-                try {
-                    FileReader texto = new FileReader(nomeTexto);
+                try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto)) ) {
+                    FileWriter escritor = new FileWriter(nomeFinal);
 
-                    int i;
+                    String texto;
 
-                    while((i = texto.read()) != -1)
-                        System.err.print((char)i);
-                        System.out.println();
+                    while((texto = leitor.readLine()) != null)
+                        escritor.write(texto);
 
-
-                    texto.close();
+                    escritor.close();
                 } catch (Exception e) {
                     System.out.println(e);
                 }
