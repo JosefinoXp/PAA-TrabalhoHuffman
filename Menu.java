@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class Menu {
     public static int opcao = -1;
 
-    String nomeArquivo;
+    public static String nomeTexto;
+    public static String nomeFinal;
 
 public static void ImprimeMenu() {
     System.out.println("\n");
@@ -39,7 +40,7 @@ public static String DigiteNomeArquivo() {
     return nomeTexto;
 }
 
-public static void MenuCodificarPalavra(String nomeTexto, String nomeFinal) {
+public static void MenuCodificarLetra(String nomeTexto, String nomeFinal) {
     try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto)) ) {
         FileWriter escritor = new FileWriter(nomeFinal);
 
@@ -58,6 +59,18 @@ public static void MenuCodificarPalavra(String nomeTexto, String nomeFinal) {
     } catch (Exception e) {
         System.out.println(e);
     }
+}
+
+public static void MenuDecodificarLetra(String nomeTexto, String nomeFinal) {
+//TODO
+}
+
+public static void MenuCodificarPalavra(String nomeTexto, String nomeFinal) {
+//TODO
+}
+
+public static void MenuDecodificarPalavra(String nomeTexto, String nomeFinal) {
+//TODO
 }
 
 public static void main(String[] args) {
@@ -79,22 +92,37 @@ public static void main(String[] args) {
         
             case 1:
                 entrada.nextLine();
-                String nomeTexto = DigiteNomeArquivo();
-                String nomeFinal = DigiteNomeArquivo();
+                nomeTexto = DigiteNomeArquivo();
+                nomeFinal = DigiteNomeArquivo();
 
-                MenuCodificarPalavra(nomeTexto, nomeFinal);
+                MenuCodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
-            case 2:    
+            case 2:
+                entrada.nextLine();
+                nomeTexto = DigiteNomeArquivo();
+                nomeFinal = DigiteNomeArquivo();
+
+                MenuDecodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
             case 3:    
+                entrada.nextLine();
+                nomeTexto = DigiteNomeArquivo();
+                nomeFinal = DigiteNomeArquivo();
+
+                MenuCodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
-            case 4:    
+            case 4:
+                entrada.nextLine();
+                nomeTexto = DigiteNomeArquivo();
+                nomeFinal = DigiteNomeArquivo();
+
+                MenuDecodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
