@@ -21,12 +21,19 @@ public static void ImprimeMenu() {
     System.out.print("\tOpção: ");
 }
 
+public static void LimparTela() {
+    //nem eu sei, mas isso aqui funciona no terminal do VSCode pra limpar a tela
+    System.out.print("\033c");
+}
+
 public static String DigiteNomeArquivo() {
     System.out.println("Digite o nome do .txt abaixo");
 
     Scanner entrada = new Scanner(System.in);
 
     String nomeTexto = entrada.nextLine();
+
+    LimparTela();
 
     return nomeTexto;
 }
@@ -38,6 +45,8 @@ public static void main(String[] args) {
         ImprimeMenu();
 
         opcao = entrada.nextInt();
+
+        LimparTela();
 
         switch (opcao) {
             case 0:
