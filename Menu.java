@@ -38,6 +38,27 @@ public static String DigiteNomeArquivo() {
     return nomeTexto;
 }
 
+public static void MenuCodificarPalavra(String nomeTexto, String nomeFinal) {
+    try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto)) ) {
+        FileWriter escritor = new FileWriter(nomeFinal);
+
+        StringBuilder texto = new StringBuilder();
+
+        String texto1;
+
+        while((texto1 = leitor.readLine()) != null)
+            texto.append(texto1);
+
+        Huffman codificador = new Huffman(texto.toString());
+
+        escritor.write(codificador.codificar());
+
+        escritor.close();
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}
+
 public static void main(String[] args) {
     Scanner entrada = new Scanner(System.in);
     
@@ -59,24 +80,7 @@ public static void main(String[] args) {
                 String nomeTexto = DigiteNomeArquivo();
                 String nomeFinal = DigiteNomeArquivo();
 
-                try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto)) ) {
-                    FileWriter escritor = new FileWriter(nomeFinal);
-
-                    StringBuilder texto = new StringBuilder();
-
-                    String texto1;
-
-                    while((texto1 = leitor.readLine()) != null)
-                        texto.append(texto1);
-
-                    Huffman codificador = new Huffman(texto.toString());
-
-                    escritor.write(codificador.codificar());
-
-                    escritor.close();
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+                MenuCodificarPalavra(nomeTexto, nomeFinal);
 
                 break;
 
