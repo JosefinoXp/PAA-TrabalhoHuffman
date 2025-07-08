@@ -29,6 +29,7 @@ public static void LimparTela() {
 public static String DigiteNomeArquivo() {
     System.out.println("Digite o nome do .txt abaixo");
 
+    @SuppressWarnings("resource")
     Scanner entrada = new Scanner(System.in);
 
     String nomeTexto = entrada.nextLine();
@@ -72,6 +73,7 @@ public static void main(String[] args) {
         switch (opcao) {
             case 0:
                 System.out.println("Saindo...");
+                entrada.close();
                 System.exit(0);
                 break;
         
