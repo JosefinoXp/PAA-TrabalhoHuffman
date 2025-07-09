@@ -44,31 +44,10 @@ public static String DigiteNomeArquivo() {
     return nomeTexto;
 }
 
-public static void MenuCodificarLetra(String nomeTexto, String nomeFinal) {
-    try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto)) ) {
-        FileWriter escritor = new FileWriter(nomeFinal);
-
-        StringBuilder texto = new StringBuilder();
-
-        String texto1;
-
-        while((texto1 = leitor.readLine()) != null)
-            texto.append(texto1);
-
-        Huffman codificador = new Huffman(texto.toString());
-
-        escritor.write(codificador.codificar());
-
-        escritor.close();
-    } catch (Exception e) {
-        System.out.println(e);
-    }
-}
-
-public static void CodificarTesteSerialization(String nomeTexto, String nomeFinal) {
+public static void CodificarLetra(String nomeTexto, String nomeFinal) {
     try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto))) {
-        FileOutputStream escritorArquivo = new FileOutputStream(nomeFinal);
 
+        FileOutputStream escritorArquivo = new FileOutputStream(nomeFinal);
         ObjectOutputStream escritorDados = new ObjectOutputStream(escritorArquivo);
         
         StringBuilder texto = new StringBuilder();
@@ -81,7 +60,7 @@ public static void CodificarTesteSerialization(String nomeTexto, String nomeFina
         Huffman codificador = new Huffman(texto.toString());
 
         //coloquei antes de escrever arvore pois necessito que apos codificar arvore exista
-        escritorDados.writeBytes(codificador.codificar());
+        escritorDados.writeObject(codificador.codificar());
         escritorDados.writeObject(codificador.getArvoreHuffman());
 
         escritorDados.close();
@@ -92,23 +71,24 @@ public static void CodificarTesteSerialization(String nomeTexto, String nomeFina
     }
 }
 
-public static void DecodificarTesteSerialization(String nomeTexto, String nomeFinal) {
+public static void DecodificarLetra(String nomeTexto, String nomeFinal) {
     try {
         FileInputStream leitorArquivo = new FileInputStream(nomeTexto);
 
         ObjectInputStream leitorDados = new ObjectInputStream(leitorArquivo);
 
+        String textoCodificado = (String)leitorDados.readObject();
+
         ArvoreHuffman raizObtida = (ArvoreHuffman)leitorDados.readObject();
 
         Huffman decodificador = new Huffman(raizObtida);
-
-        String textoCodificado = (String)leitorDados.readObject();
 
         FileWriter escritor = new FileWriter(nomeFinal);
 
         escritor.write(decodificador.decodificar(textoCodificado));
 
         leitorDados.close();
+        leitorArquivo.close();
         escritor.close();
 
 
@@ -117,15 +97,11 @@ public static void DecodificarTesteSerialization(String nomeTexto, String nomeFi
     }
 }
 
-public static void MenuDecodificarLetra(String nomeTexto, String nomeFinal) {
-
-}
-
-public static void MenuCodificarPalavra(String nomeTexto, String nomeFinal) {
+public static void CodificarPalavra(String nomeTexto, String nomeFinal) {
 //TODO
 }
 
-public static void MenuDecodificarPalavra(String nomeTexto, String nomeFinal) {
+public static void DecodificarPalavra(String nomeTexto, String nomeFinal) {
 //TODO
 }
 
@@ -151,7 +127,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                CodificarTesteSerialization(nomeTexto, nomeFinal);
+                CodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
@@ -160,7 +136,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                DecodificarTesteSerialization(nomeTexto, nomeFinal);
+                DecodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
@@ -169,7 +145,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                MenuCodificarLetra(nomeTexto, nomeFinal);
+                // MenuCodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 
@@ -178,7 +154,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                MenuDecodificarLetra(nomeTexto, nomeFinal);
+                // MenuDecodificarLetra(nomeTexto, nomeFinal);
 
                 break;
 

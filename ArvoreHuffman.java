@@ -1,4 +1,4 @@
-class ArvoreHuffman implements Comparable<ArvoreHuffman> {
+class ArvoreHuffman implements Comparable<ArvoreHuffman>, java.io.Serializable {
     char caracter;
     
     private final int frequencia;
