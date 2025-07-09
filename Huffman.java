@@ -21,8 +21,20 @@ public class Huffman {
         codigoHuffman = new HashMap<>();
     }
 
+    public Huffman(ArvoreHuffman raiz) {
+        setArvoreHuffman(raiz);
+
+        frequenciaCaracteres = null;
+        codigoHuffman = null;
+        texto = null;
+    }
+
     public ArvoreHuffman getArvoreHuffman() {
         return raiz;
+    }
+
+    public void setArvoreHuffman(ArvoreHuffman raiz) {
+        this.raiz = raiz;
     }
 
     private void preencherFrequenciaCaracteres() {
