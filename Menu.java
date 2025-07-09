@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
@@ -54,8 +53,10 @@ public static void CodificarLetra(String nomeTexto, String nomeFinal) {
 
         String textoTranscrito;
 
-        while((textoTranscrito = leitor.readLine()) != null)
+        while((textoTranscrito = leitor.readLine()) != null) {
             texto.append(textoTranscrito);
+            texto.append("\n");
+        }
 
         Huffman codificador = new Huffman(texto.toString());
 
