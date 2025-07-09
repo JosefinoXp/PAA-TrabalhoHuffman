@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class Menu {
@@ -61,6 +63,32 @@ public static void MenuCodificarLetra(String nomeTexto, String nomeFinal) {
     }
 }
 
+public static void CodificarTesteSerialization(String nomeTexto, String nomeFinal) {
+    try (BufferedReader leitor = new BufferedReader (new FileReader(nomeTexto))) {
+        FileOutputStream escritorArquivo = new FileOutputStream(nomeFinal);
+
+        ObjectOutputStream escritorDados = new ObjectOutputStream(escritorArquivo);
+        
+        StringBuilder texto = new StringBuilder();
+
+        String textoTranscrito;
+
+        while((textoTranscrito = leitor.readLine()) != null)
+            texto.append(textoTranscrito);
+
+        Huffman codificador = new Huffman(texto.toString());
+
+        escritorDados.writeObject(codificador.codigoHuffman);
+        escritorDados.writeChars(texto.toString());
+
+        escritorDados.close();
+        escritorArquivo.close();
+
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}
+
 public static void MenuDecodificarLetra(String nomeTexto, String nomeFinal) {
 //TODO
 }
@@ -95,7 +123,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                MenuCodificarLetra(nomeTexto, nomeFinal);
+                CodificarTesteSerialization(nomeTexto, nomeFinal);
 
                 break;
 

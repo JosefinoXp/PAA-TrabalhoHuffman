@@ -11,7 +11,7 @@ public class Huffman {
 
     private Map<Character, Integer> frequenciaCaracteres;
 
-    private final Map<Character, String> codigoHuffman;
+    public final Map<Character, String> codigoHuffman;
 
     public Huffman(String texto) {
         this.texto = texto;
