@@ -11,7 +11,7 @@ public class Huffman {
 
     private Map<Character, Integer> frequenciaCaracteres;
 
-    public final Map<Character, String> codigoHuffman;
+    private final Map<Character, String> codigoHuffman;
 
     public Huffman(String texto) {
         this.texto = texto;
@@ -19,6 +19,10 @@ public class Huffman {
         preencherFrequenciaCaracteres();
 
         codigoHuffman = new HashMap<>();
+    }
+
+    public ArvoreHuffman getArvoreHuffman() {
+        return raiz;
     }
 
     private void preencherFrequenciaCaracteres() {

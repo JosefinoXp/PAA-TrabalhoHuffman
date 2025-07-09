@@ -78,8 +78,9 @@ public static void CodificarTesteSerialization(String nomeTexto, String nomeFina
 
         Huffman codificador = new Huffman(texto.toString());
 
-        escritorDados.writeObject(codificador.codigoHuffman);
-        escritorDados.writeChars(texto.toString());
+        //coloquei antes de escrever arvore pois necessito que apos codificar arvore exista
+        escritorDados.writeBytes(codificador.codificar());
+        escritorDados.writeObject(codificador.getArvoreHuffman());
 
         escritorDados.close();
         escritorArquivo.close();
@@ -90,7 +91,7 @@ public static void CodificarTesteSerialization(String nomeTexto, String nomeFina
 }
 
 public static void MenuDecodificarLetra(String nomeTexto, String nomeFinal) {
-//TODO
+
 }
 
 public static void MenuCodificarPalavra(String nomeTexto, String nomeFinal) {
