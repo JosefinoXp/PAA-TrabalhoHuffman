@@ -76,7 +76,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                // GerenciadorArquivo.CodificarPalavra(nomeTexto, nomeFinal);
+                GerenciadorArquivo.CodificarPalavra(nomeTexto, nomeFinal);
 
                 break;
 
@@ -85,7 +85,7 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
-                // GerenciadorArquivo.DecodificarPalavra(nomeTexto, nomeFinal);
+                GerenciadorArquivo.DecodificarPalavra(nomeTexto, nomeFinal);
 
                 break;
 
