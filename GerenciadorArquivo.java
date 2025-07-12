@@ -105,7 +105,7 @@ public static void DecodificarLetra(String nomeTexto, String nomeFinal) {
         ObjectInputStream leitorDados = new ObjectInputStream(leitorArquivo);
         
         // ORDEM É IMPORTANTE:
-        // 1. Lê a árvore de Huffman do arquivo.
+        // 1. Le a árvore de Huffman do arquivo.
         ArvoreHuffman raizObtida = (ArvoreHuffman) leitorDados.readObject();
         
         // 2. Lê os dados de bits usando nossa nova função e reconstrói a string de bits.
@@ -138,6 +138,7 @@ public static void CodificarPalavra(String nomeTexto, String nomeFinal) {
         StringBuilder texto = new StringBuilder();
         String linha;
 
+        // tive que adicionar um if para resolver problema de leitura da string do texto
         while((linha = leitor.readLine()) != null) {
             texto.append(linha).append(" ");
         }
@@ -145,7 +146,7 @@ public static void CodificarPalavra(String nomeTexto, String nomeFinal) {
             texto.setLength(texto.length() - 1);
         }
 
-        // Remove o último '\n' para evitar problemas com contagem de frequência
+        // remove o último '\n' para evitar problemas na contagem frequência
         if (texto.length() > 0) {
             texto.setLength(texto.length() - 1);
         }

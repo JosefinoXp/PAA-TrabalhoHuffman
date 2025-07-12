@@ -40,6 +40,7 @@ public class HuffmanString {
     private void preencherFrequenciaString() {
         frequenciaString = new HashMap<>();
 
+        //pega strings separadas por espaços
         for(String palavra : texto.toString().split(" ")) {
             Integer inteiro = frequenciaString.get(palavra);
             frequenciaString.put(palavra, inteiro != null ? inteiro + 1 : 1);
@@ -75,6 +76,7 @@ public class HuffmanString {
     private String getTextoCodificado() {
         StringBuilder sb = new StringBuilder();
         
+        //esse split faz com que os caracteres especiais fiquem separados
         for (String palavra : texto.split("\\s+")) {
             if (palavra.isEmpty()) continue;
             sb.append(codigoHuffman.get(palavra));
