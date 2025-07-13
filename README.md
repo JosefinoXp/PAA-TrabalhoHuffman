@@ -41,4 +41,4 @@ Utilize em PowerShell/Command Prompt o seguinte comando (no mesmo diretório):
 
 Utilize o seguinte comando (no mesmo diretório) caso tiver que lidar com arquivos grandes (Ex: 200Mb):
 
-    java -Xmx1G MinhaClasse
+    java -Xmx1G Menu.java
