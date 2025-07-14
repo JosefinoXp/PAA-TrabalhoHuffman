@@ -58,7 +58,7 @@ public static void ResultadoDesempenho() {
     fimTempo = medidor.getCurrentThreadCpuTime();
     fimMemoria = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 
-    System.out.println("Tempo de Execução (Milisegundos): " + TimeUnit.NANOSECONDS.toMillis(fimTempo - inicioTempo) + "s");
+    System.out.println("Tempo de Execução (Milisegundos): " + TimeUnit.NANOSECONDS.toMillis(fimTempo - inicioTempo) + "ms");
     System.out.println("Memória utilizada: " + (fimMemoria - inicioMemoria) / (1024 * 1024) + "Mb");
 
     System.out.println("Aperte qualquer tecla para continuar...");
