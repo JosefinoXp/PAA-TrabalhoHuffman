@@ -1,3 +1,6 @@
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
+import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
 public class Menu {
@@ -5,6 +8,16 @@ public class Menu {
 
     public static String nomeTexto;
     public static String nomeFinal;
+
+    public static long inicioTempo;
+    public static long fimTempo;
+
+    public static long inicioMemoria;
+    public static long fimMemoria;
+
+    static ThreadMXBean medidor = ManagementFactory.getThreadMXBean();
+    
+    static Scanner entrada = new Scanner(System.in);
 
 public static void ImprimeMenu() {
     System.out.println("\n");
@@ -36,8 +49,23 @@ public static String DigiteNomeArquivo() {
     return nomeTexto;
 }
 
+public static void IniciarDesempenho() {
+    inicioTempo = medidor.getCurrentThreadCpuTime();
+    inicioMemoria = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+}
+
+public static void ResultadoDesempenho() {
+    fimTempo = medidor.getCurrentThreadCpuTime();
+    fimMemoria = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+
+    System.out.println("Tempo de Execução (Milisegundos): " + TimeUnit.NANOSECONDS.toMillis(fimTempo - inicioTempo) + "s");
+    System.out.println("Memória utilizada: " + (fimMemoria - inicioMemoria) / (1024 * 1024) + "Mb");
+
+    System.out.println("Aperte qualquer tecla para continuar...");
+    entrada.nextLine();
+}
+
 public static void main(String[] args) {
-    Scanner entrada = new Scanner(System.in);
     
     while(true) {
         ImprimeMenu();
@@ -58,7 +86,11 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
+                IniciarDesempenho();
+
                 GerenciadorArquivo.CodificarLetra(nomeTexto, nomeFinal);
+
+                ResultadoDesempenho();
 
                 break;
 
@@ -67,7 +99,11 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
+                IniciarDesempenho();
+
                 GerenciadorArquivo.DecodificarLetra(nomeTexto, nomeFinal);
+
+                ResultadoDesempenho();
 
                 break;
 
@@ -76,7 +112,11 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
+                IniciarDesempenho();
+
                 GerenciadorArquivo.CodificarPalavra(nomeTexto, nomeFinal);
+
+                ResultadoDesempenho();
 
                 break;
 
@@ -85,7 +125,11 @@ public static void main(String[] args) {
                 nomeTexto = DigiteNomeArquivo();
                 nomeFinal = DigiteNomeArquivo();
 
+                IniciarDesempenho();
+
                 GerenciadorArquivo.DecodificarPalavra(nomeTexto, nomeFinal);
+
+                ResultadoDesempenho();
 
                 break;
 

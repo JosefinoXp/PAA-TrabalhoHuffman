@@ -8,6 +8,8 @@
 
 Esse programa utiliza a linguagem de programação Java para simular o código de Huffman, no qual consiste na codificação de um arquivo .txt, transformar seus caracteres (ou palavras) em uma árvore binária, gravar árvore e texto codificado no .txt e decodificar o texto com a própria árvore gravada.
 
+Atualmente é integrado no código cálculo de desempenho: Tempo de sistema e memória utilizada.
+
 Utilizei as seguinte classes para realizar as operações
 
     import java.io.BufferedReader;
@@ -23,6 +25,11 @@ Utilizei as seguinte classes para realizar as operações
     import java.util.Map;
     import java.util.PriorityQueue;
     import java.util.Queue;
+
+    import java.lang.management.ManagementFactory;
+    import java.lang.management.ThreadMXBean;
+    import java.util.concurrent.TimeUnit;
+    import java.util.Scanner;
 
 #### 2. Operações
 
